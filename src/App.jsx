@@ -1,12 +1,12 @@
-import Header from "./components/Header"
-
+import Body from "./components/Body"
+import Browse from "./components/Browse"
 
 
 function App() {
 
   return (
-    <div>
-     
+    <div className="">
+     <Body/>
     </div>
   )
 }

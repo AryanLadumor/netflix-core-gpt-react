@@ -1,0 +1,21 @@
+# netflis GPT
+
+--create c=react app
+--configured tailwind 
+
+
+
+# Features 
+ -Login 
+     --sign in / sign up form
+ -redirect to browse page
+ -Browse (after Authentication)
+   --Header
+   --main Movie
+    --Tailer in background
+    --Title & Description
+    --Movi suggestion
+            --Movies List * N
+ --Netflix GPT
+    --Search Bar
+    --Movie suggestion
