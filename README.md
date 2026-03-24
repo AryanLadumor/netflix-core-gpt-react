@@ -7,7 +7,7 @@
 
 # Features 
  -Login 
-     --sign in / sign up form
+     --sign in / sign up form [can use formic for form handling ]
  -redirect to browse page
  -Browse (after Authentication)
    --Header
