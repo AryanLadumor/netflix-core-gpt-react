@@ -19,3 +19,8 @@
  --Netflix GPT
     --Search Bar
     --Movie suggestion
+
+
+
+
+Hosting URL: https://netflixgpt-2e1ab.web.app
