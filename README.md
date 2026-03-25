@@ -1,4 +1,4 @@
-# netflis GPT
+# netflix GPT
 
 --create c=react app
 --configured tailwind 
@@ -19,6 +19,9 @@
  --Netflix GPT
     --Search Bar
     --Movie suggestion
+
+
+created redux store , to store user details 
 
 
 
