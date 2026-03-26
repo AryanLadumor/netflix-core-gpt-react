@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { NETFLIX_LOGIN_PAGE_IMG } from "../utils/constants";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { validateFormData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
@@ -15,7 +15,6 @@ import { addUser } from "../utils/userSlice";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
-  const navigate = useNavigate();
 
   const username = useRef(null);
   const email = useRef(null);
@@ -46,7 +45,6 @@ const Login = () => {
                const {uid , email , displayName} = auth.currentUser;
                 dispatch(addUser({uid,email,displayName}))
               // Profile updated!
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -70,7 +68,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-            navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
