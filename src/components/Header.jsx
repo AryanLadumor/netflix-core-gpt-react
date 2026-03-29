@@ -3,7 +3,7 @@ import { NETFFLIX_USER_LOGO, NETFLIX_LOGO } from "../utils/constants";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser , removeUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -13,17 +13,20 @@ const Header = () => {
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const {uid , email , displayName} = user;
-        dispatch(addUser({uid,email,displayName}))
-        navigate("/browse")
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid, email, displayName }));
+        navigate("/browse");
       } else {
         // User is signed out
-        dispatch(removeUser())
-        navigate("/")
+        dispatch(removeUser());
+        navigate("/");
       }
     });
+
+    //TODO Know this Unscribe when unmoount
+    return ()=>unsubscribe()
   }, []);
 
   const handleSignOut = () => {
@@ -35,7 +38,6 @@ const Header = () => {
       .catch((error) => {
         // An error happened.
         console.log(error);
-        navigate("/error");
       });
   };
 
