@@ -6,16 +6,12 @@ import VideoBackground from './VideoBackground'
 const MainContainer = () => {
 
 const movies = useSelector(store=>store.movie?.nowPlayingMovies)
-console.log(movies)
 
 //early return 
 if(!movies)  return  //this happen my loading movie
 
-const bannerMovie = movies[2]
+const bannerMovie = movies[6]
 const {original_title , overview , id } = bannerMovie
-console.log(bannerMovie)
-
-
 
   return (
     <div>
