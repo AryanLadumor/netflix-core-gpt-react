@@ -1,11 +1,16 @@
-import React from 'react'
-import Header from './Header'
+import Header from "./Header";
+import useNowPlayMovie from "../hooks/useNowPlayMovie";
+
 const Browse = () => {
+  
+  //this will fetch APi(Now Playing Moives) and update the store(movie slice)
+  useNowPlayMovie();
+
   return (
     <div>
-      <Header/>
+      <Header />
     </div>
-  )
-}
+  );
+};
 
-export default Browse
+export default Browse;
