@@ -8,7 +8,7 @@ const VideoBackground = ({ movieId }) => {
   useTrailerVideo(movieId)
   if (!trailerKey) return
   return (
-    <div  className="relative h-[37rem] overflow-hidden">
+    <div  className="relative h-[48rem] overflow-hidden">
       {/* Background Video */}
       <iframe
       className="absolute rounded-none pointer-events-none w-screen aspect-video top-0 -translate-y-24 "

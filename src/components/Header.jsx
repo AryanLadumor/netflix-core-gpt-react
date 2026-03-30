@@ -23,11 +23,11 @@ const Header = () => {
         dispatch(removeUser());
         navigate("/");
       }
-    });
+    }); 
 
     //TODO Know this Unscribe when unmoount
     return ()=>unsubscribe()
-  }, []);
+  }, [dispatch,navigate]);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -52,13 +52,13 @@ const Header = () => {
           className="flex flex-col justify-center mr-10 hover:scale-110 transition duration-75  items-center cursor-pointer"
           onClick={handleSignOut}
         >
+          <p className="text-sm font-semibold text-slate-300">({user.displayName})</p>
           <img
             src={NETFFLIX_USER_LOGO}
             alt=""
             className=" w-9 h-9 cursor-pointer "
           />
-          <p className="text-xs font-bold text-red-600">Sign Out</p>
-          <p className="text-xs font-bold text-red-600">{user.displayName}</p>
+          <p className="text-md font-semibold text-white">Sign Out</p>
         </div>
       )}
     </div>

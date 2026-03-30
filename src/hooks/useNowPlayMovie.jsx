@@ -7,6 +7,9 @@ import { API_OPTIONS } from '../utils/constants'
 const useNowPlayMovie = () => {
     const dispatch = useDispatch()
 
+
+  useEffect(()=>{
+    
   const getNowPlayingMovie = async () =>{
     const data =await  fetch('https://api.themoviedb.org/3/movie/now_playing?&page=1', API_OPTIONS)
     const json = await data.json()
@@ -14,9 +17,8 @@ const useNowPlayMovie = () => {
     dispatch(addNowPlayingMovie(json?.results))
   }
 
-  useEffect(()=>{
   getNowPlayingMovie()
-  },[])
+  },[dispatch])
 
 }
 
