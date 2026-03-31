@@ -86,7 +86,7 @@ const Login = () => {
     <div className="relative  w-full h-full">
       <Header />
       {/* body of login page */}
-      <div className="">
+      <div className="w-full">
         <img
           className="w-full h-screen object-cover"
           src={NETFLIX_LOGIN_PAGE_IMG}
@@ -140,7 +140,7 @@ const Login = () => {
               className="text-white font-semibold "
             >
               {" "}
-              Sign Up Now.
+              Register Now.
             </Link>
           </p>
         ) : (

@@ -5,8 +5,12 @@ import useTopRatedMovie from "../hooks/useTopRatedMovie";
 import useUpcomingMovie from "../hooks/useUpcomingMovie";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
 
 const Browse = () => {
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
   //this will fetch APi(Now Playing Moives) and update the store(movie slice)
   useNowPlayMovie();
   usePopularMovie();
@@ -14,15 +18,21 @@ const Browse = () => {
   useUpcomingMovie();
 
   return (
-    <div>
+    <div className="">
       {/* Header */}
       <Header />
 
-      {/* main Container --> videbackground --video title */}
-      <MainContainer />
+      {showGptSearch ? (
+        <GptSearch />
+      ) : (
+        <>
+          {/* main Container --> videbackground --video title */}
+          <MainContainer />
 
-      {/*secondary container  -> movieList*n --> cards*n  */}
-      <SecondaryContainer />
+          {/*secondary container  -> movieList*n --> cards*n  */}
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };
