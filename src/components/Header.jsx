@@ -73,7 +73,7 @@ const Header = () => {
               className="p-2 m-4 text-white bg-violet-500 rounded-lg w-28 h-11 hover:scale-105"
               onClick={handleGptSearchClick}
             >
-              {showGptSearch? "Home":"GPT Search"}
+              {showGptSearch? "Home":"Search Movie"}
             </button>
           </div>
 
