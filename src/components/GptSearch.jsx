@@ -4,18 +4,18 @@ import GptSearchBar from "./GptSearchBar";
 import { NETFLIX_LOGIN_PAGE_IMG } from "../utils/constants";
 
 const GptSearch = () => {
-
-  
   return (
-    <div className="w-full">
-      <div className="absolute w-full -z-10">
+    <div className="relative w-full min-h-screen">
+      {/* Background */}
+      <div className="fixed inset-0 -z-10">
         <img
-          className="w-full  h-screen object-cover fixed "
+          className="w-full h-full object-cover"
           src={NETFLIX_LOGIN_PAGE_IMG}
-          alt=""
+          alt="background"
         />
-        <div className="absolute  inset-0 bg-black z-1 "></div>
+        <div className="absolute inset-0 bg-black/75" />
       </div>
+
       <GptSearchBar />
       <GptMovieSuggestion />
     </div>

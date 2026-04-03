@@ -6,7 +6,7 @@ function App() {
 
   return (
     <Provider store={store}>
-    <div className="">
+    <div className="w-full">
      <Body/>
     </div>
     </Provider>

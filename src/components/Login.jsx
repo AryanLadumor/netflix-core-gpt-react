@@ -20,7 +20,7 @@ const Login = () => {
   const email = useRef(null);
   const password = useRef(null);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleButtonClick = () => {
     const msg = validateFormData(email.current.value, password.current.value);
@@ -28,52 +28,30 @@ const Login = () => {
     if (msg) return;
 
     if (!isSignInForm) {
-      //Sign In Process
-      createUserWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
-          const user = userCredential.user; // Signed up
-          console.log(user);
-          //set up display name on sign up
-          updateProfile(auth.currentUser, {
-            displayName: username.current.value,
-          })
+          // eslint-disable-next-line no-unused-vars
+          const user = userCredential.user;
+          updateProfile(auth.currentUser, { displayName: username.current.value })
             .then(() => {
-               const {uid , email , displayName} = auth.currentUser;
-                dispatch(addUser({uid,email,displayName}))
-              // Profile updated!
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(addUser({ uid, email, displayName }));
             })
             .catch((error) => {
-              // An error occurred
-              setErrorMsg(error.message)
-              console.log(error);
+              setErrorMsg(error.message);
             });
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMsg(errorCode + "-" + errorMessage);
-          console.log(error);
+          setErrorMsg(error.code + "-" + error.message);
         });
     } else {
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value,
-      )
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
           console.log(user);
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMsg(errorCode + "-" + errorMessage);
-          console.log(error);
+          setErrorMsg(error.code + "-" + error.message);
         });
     }
   };
@@ -83,73 +61,81 @@ const Login = () => {
   };
 
   return (
-    <div className="relative  w-full h-full">
+    <div className="relative w-full min-h-screen">
       <Header />
-      {/* body of login page */}
-      <div className="w-full">
+
+      {/* Background */}
+      <div className="w-full h-screen">
         <img
-          className="w-full h-screen object-cover"
+          className="w-full h-full object-cover"
           src={NETFLIX_LOGIN_PAGE_IMG}
-          alt=""
+          alt="background"
         />
-        <div className="absolute  inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50 sm:bg-black/40"></div>
       </div>
 
-      {/* Form Of Login/sign in */}
+      {/* Form */}
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-80 p-8  bg-black/70 transition duration-1000"
+        className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+          flex flex-col items-center
+          w-[90vw] max-w-sm sm:max-w-md
+          p-6 sm:p-8
+          bg-black/80 sm:bg-black/75
+          rounded-md
+          transition duration-1000"
       >
-        <h2 className="text-white text-2xl font-bold mb-4">
+        <h2 className="text-white text-2xl sm:text-3xl font-bold mb-5">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h2>
+
         <input
           ref={email}
           type="email"
           placeholder="Email address"
-          className="p-2 m-2 w-full rounded bg-gray-700 text-white"
+          className="p-3 my-2 w-full rounded bg-gray-700 text-white placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-500"
         />
+
         {!isSignInForm && (
           <input
             ref={username}
             type="text"
             placeholder="Username"
-            className="p-2 m-2 w-full rounded bg-gray-700 text-white"
+            className="p-3 my-2 w-full rounded bg-gray-700 text-white placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-500"
           />
         )}
+
         <input
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-2 m-2 w-full rounded bg-gray-700 text-white"
+          className="p-3 my-2 w-full rounded bg-gray-700 text-white placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-red-500"
         />
 
-        <p className=" m-1 text-red-600 text-sm">{errorMsg}</p>
+        {errorMsg && (
+          <p className="w-full m-1 text-red-500 text-xs sm:text-sm text-center break-words">
+            {errorMsg}
+          </p>
+        )}
+
         <button
-          className="p-3 mt-7  m-4 w-full bg-red-600 text-white rounded font-bold hover:scale-[1.02] transition duration-75"
+          className="p-3 mt-5 w-full bg-red-600 text-white rounded font-bold text-sm sm:text-base hover:bg-red-700 hover:scale-[1.02] transition duration-150"
           onClick={handleButtonClick}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
 
         {isSignInForm ? (
-          <p className="text-gray-500 text-sm m-6">
-            New to Netflix?
-            <Link
-              onClick={toggleSignInForm}
-              className="text-white font-semibold "
-            >
-              {" "}
+          <p className="text-gray-400 text-sm mt-5 text-center">
+            New to Netflix?{" "}
+            <Link onClick={toggleSignInForm} className="text-white font-semibold hover:underline">
               Register Now.
             </Link>
           </p>
         ) : (
-          <p className="text-gray-500 text-sm m-6">
-            Already had a Account,
-            <Link
-              onClick={toggleSignInForm}
-              className="text-white font-semibold "
-            >
+          <p className="text-gray-400 text-sm mt-5 text-center">
+            Already have an account?{" "}
+            <Link onClick={toggleSignInForm} className="text-white font-semibold hover:underline">
               Sign In.
             </Link>
           </p>

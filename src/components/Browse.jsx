@@ -18,7 +18,7 @@ const Browse = () => {
   useUpcomingMovie();
 
   return (
-    <div className="">
+    <div className="w-full">
       {/* Header */}
       <Header />
 
