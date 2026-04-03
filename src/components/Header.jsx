@@ -48,7 +48,7 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full flex items-center justify-between absolute z-10 px-4 sm:px-6 py-3 bg-gradient-to-b from-black flex-row">
+    <div className="w-full flex items-center justify-between absolute z-50 px-4 sm:px-6 py-3 bg-gradient-to-b from-black flex-row">
       {/* Logo */}
       <div className="flex-shrink-0">
         <img
@@ -105,7 +105,7 @@ const Header = () => {
 
           {/* Mobile Dropdown */}
           {menuOpen && (
-            <div className="md:hidden absolute top-full right-0 left-0 bg-black/95 backdrop-blur-sm px-4 py-4 flex flex-col gap-3 z-50 border-t border-gray-800">
+            <div className="md:hidden absolute top-full right-0 left-0 bg-black/95 backdrop-blur-sm px-4 py-4 z-[100] flex flex-col gap-3  border-t border-gray-800">
               {showGptSearch && (
                 <select
                   className="p-2 w-full rounded bg-gray-800 text-white text-sm"
